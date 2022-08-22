@@ -1,0 +1,18 @@
+.browseContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.browseInput { 
+  margin: 20px 0px;
+}
+
+.cardImage {
+  height: 100% !important;
+}
+
+/* .spinnerContainer{
+  width: 100%;
+  height: 100%;
+} */
