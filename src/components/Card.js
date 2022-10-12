@@ -1,23 +1,25 @@
-import React from "react";
-import MovieImg from "./MoviesImg";
+import React from 'react';
 
-const Card = ({ path, title, popularity}) => {
+const Card = ({ path, title, popularity }) => {
   return (
     <>
-      <div className="image">
-        <MovieImg path={path}/>
+      <div className='image'>
+        <img
+          className='cardImage'
+          src={`https://image.tmdb.org/t/p/w500/${path}`}
+        />
       </div>
-      <div className="content">
-        <a className="header">{title}</a>
+      <div className='content'>
+        <a className='header'>{title}</a>
       </div>
-      <div className="extra content">
+      <div className='extra content'>
         <a>
-          <i className="eye icon"></i>
+          <i className='eye icon'></i>
           {popularity}
         </a>
       </div>
     </>
-  )
-}
+  );
+};
 
 export default Card;
