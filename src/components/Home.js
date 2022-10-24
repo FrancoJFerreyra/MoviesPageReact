@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import movieDB from '../api/movieDB';
+import React from 'react';
+import useFetchMovies from '../hooks/useFetchMovies';
 import MovieList from './MovieList';
+import NavBar from './NavBar';
 
-const Home = ({ setMovies }) => {
-  const popularMovies = async () => {
-    const { data } = await movieDB.get('/movie/popular');
-    setMovies(data.results);
-  };
+const Home = () => {
+  const movies = useFetchMovies('movie/popular');
 
-  useEffect(() => {
-    popularMovies();
-  }, [setMovies]);
+  return (
+    <div>
+      <NavBar />
+      <MovieList movies={movies} />
+    </div>
+  );
 };
 
 export default Home;

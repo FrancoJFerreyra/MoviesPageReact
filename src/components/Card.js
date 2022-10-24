@@ -7,6 +7,7 @@ const Card = ({ path, title, popularity }) => {
         <img
           className='cardImage'
           src={`https://image.tmdb.org/t/p/w500/${path}`}
+          alt={title}
         />
       </div>
       <div className='content'>

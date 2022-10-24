@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DebounceInput } from 'react-debounce-input';
+import useGenres from '../hooks/useGenresContext';
 import movieDB from '../api/movieDB';
-import MovieList from './MovieList';
+import MovieList from './MoviesPerRecent';
 import {
   Button,
   Container,
@@ -13,65 +14,94 @@ import {
   NavDropdown,
 } from 'react-bootstrap';
 import GenreList from './GenreList';
+import MoviesPerRecent from './MoviesPerRecent';
+import Filter from './Filter';
 
-const NavBar = ({ setMovies }) => {
-  const [searchText, setSearchText] = useState('');
-  const [isLoading, setLoading] = useState(false);
+const NavBar = ({ setSelected }) => {
+  const [genreDetails, setGenre] = useState([]);
 
   useEffect(() => {
-    setLoading(true);
-    const foundMovies = async () => {
-      const { data } = await movieDB.get('/search/movie', {
+    const getGenres = async () => {
+      const { data } = await movieDB.get('/genre/movie/list', {
         params: {
-          query: searchText,
-          page: 1,
           language: 'en-US',
         },
       });
-      setMovies(data.results);
-      setLoading(false);
+      setGenre(data.genres);
     };
-    if (searchText) {
-      foundMovies();
-    } else {
-      setLoading(false);
-    }
-  }, [searchText]);
+    getGenres();
+  }, []);
+
+  const genreList = genreDetails.map((genre) => {
+    return (
+      <Dropdown.Item
+        onClick={() => setSelected(genre.id)}
+        key={genre.id}
+        as='li'
+      >
+        <Link to='/Genres'>{genre.name}</Link>
+      </Dropdown.Item>
+    );
+  });
+
+  // const [searchText, setSearchText] = useState('');
+  // const [isLoading, setLoading] = useState(false);
+
+  // useEffect(() => {
+  //   setLoading(true);
+  //   const foundMovies = async () => {
+  //     const { data } = await movieDB.get('/search/movie', {
+  //       params: {
+  //         query: searchText,
+  //         page: 1,
+  //         language: 'en-US',
+  //       },
+  //     });
+  //     setMovies(data.results);
+  //     setLoading(false);
+  //   };
+  //   if (searchText) {
+  //     foundMovies();
+  //   } else {
+  //     setLoading(false);
+  //   }
+  // }, [searchText]);
 
   return (
-    <header>
-      <Navbar bg='light' expand='lg'>
-        <Container fluid>
-          <Navbar.Brand href='#'>Navbar scroll</Navbar.Brand>
-          <Navbar.Toggle aria-controls='navbarScroll' />
-          <Navbar.Collapse id='navbarScroll'>
-            <Nav
-              className='me-auto my-2 my-lg-0'
-              style={{ maxHeight: '100px' }}
-              navbarScroll
-              as='ul'
-            >
-              <Nav.Item as='li'>
-                <Link className='nav-link' to='/'>
-                  Home
-                </Link>
-              </Nav.Item>
-              <GenreList setMovies={setMovies} dropdownTitle='Genre' />
-              <GenreList setMovies={setMovies} dropdownTitle='Movies' />
-            </Nav>
-            <Form className='d-flex'>
-              <Form.Control
-                type='search'
-                placeholder='Search'
-                className='me-2'
-                aria-label='Search'
-              />
-              <Button variant='outline-success'>Search</Button>
-            </Form>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-      {/* <nav>
+    <>
+      <header>
+        <Navbar bg='light' expand='lg'>
+          <Container fluid>
+            <Navbar.Brand href='#'>Navbar scroll</Navbar.Brand>
+            <Navbar.Toggle aria-controls='navbarScroll' />
+            <Navbar.Collapse id='navbarScroll'>
+              <Nav
+                className='me-auto my-2 my-lg-0'
+                style={{ maxHeight: '100px' }}
+                navbarScroll
+                as='ul'
+              >
+                <Nav.Item as='li'>
+                  <Link className='nav-link' to='/'>
+                    Home
+                  </Link>
+                </Nav.Item>
+                <Filter list={genreList} dropdownTitle='Genres' />
+                <MoviesPerRecent />
+              </Nav>
+              <Form className='d-flex'>
+                <Form.Control
+                  type='search'
+                  placeholder='Search'
+                  className='me-2'
+                  aria-label='Search'
+                />
+                <Button variant='outline-success'>Search</Button>
+              </Form>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+        {/* <nav>
           <Link to={'/'}>Home</Link>
           <Link to={'/genre'}>Genre</Link>
           <div>
@@ -94,10 +124,11 @@ const NavBar = ({ setMovies }) => {
             </div>
           </div>
         </nav> */}
-      <div>
-        <h1>The Movies App</h1>
-      </div>
-    </header>
+        <div>
+          <h1>The Movies App</h1>
+        </div>
+      </header>
+    </>
   );
 };
 
