@@ -1,26 +1,15 @@
-import { useEffect, useState } from 'react';
-import movieDB from '../api/movieDB';
-import useFetchMovies from '../hooks/useFetchMovies';
+import React, { useContext, useEffect } from 'react';
 import MovieList from './MovieList';
+//context
+import NavbarContext from '../contexts/Navbar/NavbarContext';
+const GenreList = () => {
+  const { genreMovies, getByGenre } = useContext(NavbarContext);
 
-const GenreList = ({ selectedId }) => {
-  // const [movies, setMovies] = useState([]);
-  // const [selected, setSelected] = useState({});
+  useEffect(() => {
+    getByGenre();
+  }, []);
 
-  const movies = useFetchMovies('discover/movie', { with_genres: selectedId });
-
-  return <MovieList movies={movies} />;
-  // useEffect(() => {
-  //   const genreMovies = async () => {
-  //     const { data } = await movieDB.get('/discover/movie', {
-  //       params: {
-  //         with_genres: selected.id,
-  //       },
-  //     });
-  //     setMovies(data.results);
-  //   };
-  //   genreMovies();
-  // }, [selected]);
+  return <MovieList movies={genreMovies} />;
 };
 
 export default GenreList;

@@ -1,10 +1,18 @@
-import React from 'react';
-import useFetchMovies from '../hooks/useFetchMovies';
+import React, { useEffect, useState } from 'react';
+import movieDB from '../api/movieDB';
 import MovieList from './MovieList';
 import NavBar from './NavBar';
 
 const Home = () => {
-  const movies = useFetchMovies('movie/popular');
+  const [movies, setMovies] = useState([]);
+
+  const query = async () => {
+    const { data } = await movieDB.get('/movie/popular');
+    setMovies(data.results);
+  };
+  useEffect(() => {
+    query();
+  }, []);
 
   return (
     <div>

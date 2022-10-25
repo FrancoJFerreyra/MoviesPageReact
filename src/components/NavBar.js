@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react';
+import { Link, redirect } from 'react-router-dom';
 import { DebounceInput } from 'react-debounce-input';
-import useGenres from '../hooks/useGenresContext';
 import movieDB from '../api/movieDB';
 import MovieList from './MoviesPerRecent';
 import {
@@ -13,12 +12,17 @@ import {
   Navbar,
   NavDropdown,
 } from 'react-bootstrap';
-import GenreList from './GenreList';
 import MoviesPerRecent from './MoviesPerRecent';
 import Filter from './Filter';
+//context
+import NavbarContext from '../contexts/Navbar/NavbarContext';
 
-const NavBar = ({ setSelected }) => {
+const NavBar = () => {
   const [genreDetails, setGenre] = useState([]);
+
+  const { getByGenre } = useContext(NavbarContext);
+
+  const categories = ['Now Playing', 'Upcoming', 'Popular', 'Top Rated'];
 
   useEffect(() => {
     const getGenres = async () => {
@@ -35,11 +39,23 @@ const NavBar = ({ setSelected }) => {
   const genreList = genreDetails.map((genre) => {
     return (
       <Dropdown.Item
-        onClick={() => setSelected(genre.id)}
+        onClick={() => getByGenre(genre.id)}
         key={genre.id}
         as='li'
       >
         <Link to='/Genres'>{genre.name}</Link>
+      </Dropdown.Item>
+    );
+  });
+
+  const categoriesList = categories.map((category) => {
+    return (
+      <Dropdown.Item
+        onClick={() => console.log(category)}
+        key={category}
+        as='li'
+      >
+        <Link to='/Movies'>{category}</Link>
       </Dropdown.Item>
     );
   });
@@ -87,7 +103,7 @@ const NavBar = ({ setSelected }) => {
                   </Link>
                 </Nav.Item>
                 <Filter list={genreList} dropdownTitle='Genres' />
-                <MoviesPerRecent />
+                <Filter list={categoriesList} dropdownTitle='Movies' />
               </Nav>
               <Form className='d-flex'>
                 <Form.Control
