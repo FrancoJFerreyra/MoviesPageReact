@@ -1,15 +1,15 @@
 import React, { useContext, useEffect } from 'react';
 import MovieList from './MovieList';
 //context
-import NavbarContext from '../contexts/Navbar/NavbarContext';
+import HeaderContext from '../contexts/Header/HeaderContext';
 const GenreList = () => {
-  const { genreMovies, getByGenre } = useContext(NavbarContext);
+  const { moviesList, getByGenre } = useContext(HeaderContext);
 
   useEffect(() => {
     getByGenre();
   }, []);
 
-  return <MovieList movies={genreMovies} />;
+  return <MovieList movies={moviesList} />;
 };
 
 export default GenreList;

@@ -1,2 +1,2 @@
-export const GET_GENRE = 'GET_GENRE';
-export const GET_CATEGORY = 'GET_CATEGORY';
+export const GET_MOVIES = 'GET_MOVIES';
+export const GET_GENRELIST = 'GET_GENRELIST';

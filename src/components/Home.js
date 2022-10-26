@@ -1,23 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import movieDB from '../api/movieDB';
 import MovieList from './MovieList';
-import NavBar from './NavBar';
+import Header from './Header';
+import HeaderContext from '../contexts/Header/HeaderContext';
 
 const Home = () => {
-  const [movies, setMovies] = useState([]);
+  const { moviesList, getPopular } = useContext(HeaderContext);
 
-  const query = async () => {
-    const { data } = await movieDB.get('/movie/popular');
-    setMovies(data.results);
-  };
   useEffect(() => {
-    query();
+    getPopular();
   }, []);
 
   return (
     <div>
-      <NavBar />
-      <MovieList movies={movies} />
+      <Header />
+      <MovieList movies={moviesList} />
     </div>
   );
 };
