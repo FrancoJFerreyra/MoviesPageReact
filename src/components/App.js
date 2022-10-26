@@ -9,7 +9,7 @@ import Genre from './Genres';
 import HeaderContext from '../contexts/Header/HeaderContext';
 
 const App = () => {
-  const { genreList, getGenreList } = useContext(HeaderContext);
+  const { getGenreList } = useContext(HeaderContext);
   useEffect(() => {
     getGenreList();
   }, []);
@@ -20,11 +20,7 @@ const App = () => {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
-      {genreList.map(({ name }) => {
-        return (
-          <Route path={`/genre/${name.toLowerCase()}`} element={<Genre />} />
-        );
-      })}
+      <Route path={'/genre/:name'} element={<Genre />} />
       <Route path='/Movies' element={<MoviesPerRecent />} />
     </Routes>
   );

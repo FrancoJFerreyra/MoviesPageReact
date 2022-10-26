@@ -20,8 +20,14 @@ import HeaderContext from '../contexts/Header/HeaderContext';
 const Header = () => {
   const [searchText, setSearchText] = useState('');
 
-  const { genreList, getByGenre, getByCategory, getBySearched, getPopular } =
-    useContext(HeaderContext);
+  const {
+    genreList,
+    getGenreList,
+    getByGenre,
+    getByCategory,
+    getBySearched,
+    getPopular,
+  } = useContext(HeaderContext);
 
   const categories = ['Now Playing', 'Upcoming', 'Popular', 'Top Rated'];
 
@@ -30,7 +36,7 @@ const Header = () => {
       <Link
         className='dropdown-item'
         to={`/genre/${name.toLowerCase()}`}
-        onClick={() => getByGenre(id, name)}
+        onClick={() => getByGenre(id)}
         key={id}
       >
         {name}

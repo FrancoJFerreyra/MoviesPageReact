@@ -30,7 +30,7 @@ const HeaderState = ({ children }) => {
       payload: data.results,
     });
   };
-  const getByGenre = async (id, name) => {
+  const getByGenre = async (id) => {
     const { data } = await movieDB.get('/discover/movie', {
       params: {
         with_genres: id,

@@ -5,6 +5,7 @@ const HeaderReducer = (state, action) => {
   console.log(type);
   switch (type) {
     case GET_MOVIES:
+      console.log(payload);
       return { ...state, moviesList: payload };
     case GET_GENRELIST:
       return { ...state, genreList: payload };
