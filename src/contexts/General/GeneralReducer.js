@@ -1,17 +1,17 @@
-import { GET_GENRELIST, GET_MOVIES } from '../types';
+import { GET_GENRELIST, GET_MOVIES, SET_MOVIEDETAILS } from '../types';
 
-const HeaderReducer = (state, action) => {
+const GeneralReducer = (state, action) => {
   const { payload, type } = action;
-  console.log(type);
   switch (type) {
     case GET_MOVIES:
-      console.log(payload);
       return { ...state, moviesList: payload };
     case GET_GENRELIST:
       return { ...state, genreList: payload };
+    case SET_MOVIEDETAILS:
+      return { ...state, movieDetails: payload };
     default:
       return state;
   }
 };
 
-export default HeaderReducer;
+export default GeneralReducer;

@@ -4,15 +4,15 @@ import { BrowserRouter } from 'react-router-dom';
 import './scss/index.scss';
 import App from './components/App';
 //context
-import HeaderState from './contexts/Header/HeaderState';
+import GeneralState from './contexts/General/GeneralState';
 
 const root = createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <HeaderState>
+      <GeneralState>
         <App />
-      </HeaderState>
+      </GeneralState>
     </BrowserRouter>
   </React.StrictMode>
 );

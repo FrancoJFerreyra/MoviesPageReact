@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
-import movieDB from '../api/movieDB';
+import React, { useContext, useEffect } from 'react';
 import MovieList from './MovieList';
 import Header from './Header';
-import HeaderContext from '../contexts/Header/HeaderContext';
+import HeaderContext from '../contexts/General/GeneralContext';
 
 const Home = () => {
   const { moviesList, getPopular } = useContext(HeaderContext);
@@ -12,10 +11,10 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <Header />
       <MovieList movies={moviesList} />
-    </div>
+    </>
   );
 };
 

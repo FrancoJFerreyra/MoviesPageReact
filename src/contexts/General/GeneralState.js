@@ -1,15 +1,16 @@
 import React, { useReducer } from 'react';
-import HeaderReducer from './HeaderReducer';
-import HeaderContext from './HeaderContext';
+import GeneralReducer from './GeneralReducer';
+import GeneralContext from './GeneralContext';
 import movieDB from '../../api/movieDB';
 
-const HeaderState = ({ children }) => {
+const GeneralState = ({ children }) => {
   const initialState = {
     moviesList: [],
     genreList: [],
+    movieDetails: {},
   };
 
-  const [state, dispatch] = useReducer(HeaderReducer, initialState);
+  const [state, dispatch] = useReducer(GeneralReducer, initialState);
 
   const getGenreList = async () => {
     const { data } = await movieDB.get('/genre/movie/list', {
@@ -30,6 +31,7 @@ const HeaderState = ({ children }) => {
       payload: data.results,
     });
   };
+
   const getByGenre = async (id) => {
     const { data } = await movieDB.get('/discover/movie', {
       params: {
@@ -41,6 +43,7 @@ const HeaderState = ({ children }) => {
       payload: data.results,
     });
   };
+
   const getByCategory = async (category) => {
     const categoryPath = category.split(' ').join('_').toLowerCase();
     const { data } = await movieDB.get(`/movie/${categoryPath}`);
@@ -49,6 +52,7 @@ const HeaderState = ({ children }) => {
       payload: data.results,
     });
   };
+
   const getBySearched = async (text) => {
     if (text) {
       const { data } = await movieDB.get('/search/movie', {
@@ -60,28 +64,37 @@ const HeaderState = ({ children }) => {
       });
       data.results.length > 0
         ? dispatch({
-            type: 'GET_SEARCHED',
+            type: 'GET_MOVIES',
             payload: data.results,
           })
         : alert('Search not found');
     }
   };
 
+  const setMovieDetails = (movie) => {
+    dispatch({
+      type: 'SET_MOVIEDETAILS',
+      payload: movie,
+    });
+  };
+
   return (
-    <HeaderContext.Provider
+    <GeneralContext.Provider
       value={{
         moviesList: state.moviesList,
         genreList: state.genreList,
+        movieDetails: state.movieDetails,
         getGenreList,
         getPopular,
         getByGenre,
         getByCategory,
         getBySearched,
+        setMovieDetails,
       }}
     >
       {children}
-    </HeaderContext.Provider>
+    </GeneralContext.Provider>
   );
 };
 
-export default HeaderState;
+export default GeneralState;

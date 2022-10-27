@@ -1,14 +1,15 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import Header from './Header';
 import MovieList from './MovieList';
 //context
-import HeaderContext from '../contexts/Header/HeaderContext';
+import GeneralContext from '../contexts/General/GeneralContext';
+import { useParams } from 'react-router-dom';
 
 const MoviesPerRecent = () => {
-  const { moviesList, getByCategory } = useContext(HeaderContext);
-
+  const { moviesList, getByCategory } = useContext(GeneralContext);
+  const { categoryName } = useParams();
   useEffect(() => {
-    getByCategory();
+    getByCategory(categoryName);
   }, []);
 
   return (
