@@ -3,11 +3,13 @@ import GenreList from './GenreList';
 import Header from './Header';
 
 const Genres = () => {
-  return (
-    <>
-      <Header />
-      <GenreList />
-    </>
-  );
+	return (
+		<>
+			<Header />
+			<div className='container-xxl'>
+				<GenreList />
+			</div>
+		</>
+	);
 };
 export default Genres;

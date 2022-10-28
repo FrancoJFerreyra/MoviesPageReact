@@ -1,1 +1,47 @@
 @import './bootstrap.scss';
+
+#root {
+	height: 100%;
+}
+.center__spinner {
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	flex-flow: column;
+	align-items: center;
+}
+.moviePage__movie--container {
+	padding-top: 1.5rem;
+	padding-bottom: 1rem;
+	display: flex;
+	align-items: center;
+}
+.moviePage__image--container {
+	text-align: center;
+	img {
+		width: 100%;
+		max-width: 16.25rem;
+	}
+}
+.moviePage__movie--details {
+	padding-left: 0.75rem;
+}
+.moviePage__title--container {
+	padding-bottom: 1rem;
+}
+.moviePage__details--aboutMovie,
+.moviePage__details--genres {
+	display: flex;
+	flex-direction: column;
+	column-gap: 1.5rem;
+}
+.moviePage__details--aboutMovie {
+	padding-bottom: 0.75rem;
+}
+.moviePage__details--overview {
+	padding-top: 1.5rem;
+	padding-bottom: 1rem;
+}

@@ -8,11 +8,9 @@ import GeneralState from './contexts/General/GeneralState';
 
 const root = createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <GeneralState>
-        <App />
-      </GeneralState>
-    </BrowserRouter>
-  </React.StrictMode>
+	<BrowserRouter>
+		<GeneralState>
+			<App />
+		</GeneralState>
+	</BrowserRouter>
 );

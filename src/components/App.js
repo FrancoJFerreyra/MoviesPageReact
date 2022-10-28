@@ -10,22 +10,22 @@ import MoviePage from './MoviePage';
 import GeneralContext from '../contexts/General/GeneralContext';
 
 const App = () => {
-  const { getGenreList } = useContext(GeneralContext);
+	const { getGenreList } = useContext(GeneralContext);
 
-  useEffect(() => {
-    Aos.init();
-  }, []);
-  useEffect(() => {
-    getGenreList();
-  }, []);
-  return (
-    <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/genre/:genreName' element={<Genre />} />
-      <Route path='/category/:categoryName' element={<MoviesPerRecent />} />
-      <Route path='/title/:title/:movieId' element={<MoviePage />} />
-    </Routes>
-  );
+	useEffect(() => {
+		Aos.init();
+	}, []);
+	useEffect(() => {
+		getGenreList();
+	}, []);
+	return (
+		<Routes>
+			<Route path='/' element={<Home />} />
+			<Route path='/genre/:genreName' element={<Genre />} />
+			<Route path='/category/:categoryName' element={<MoviesPerRecent />} />
+			<Route path='/title/:title/:movieId' element={<MoviePage />} />
+		</Routes>
+	);
 };
 
 export default App;
