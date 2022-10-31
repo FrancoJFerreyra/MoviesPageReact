@@ -6,26 +6,34 @@ import Home from './Home';
 import MoviesPerRecent from './MoviesPerRecent';
 import Genre from './Genres';
 import MoviePage from './MoviePage';
+import useMovies from '../hooks/useMovies';
 //context
 import GeneralContext from '../contexts/General/GeneralContext';
 
 const App = () => {
-	const { getGenreList } = useContext(GeneralContext);
+  const { updateGenreList } = useContext(GeneralContext);
+  const { getGenreList } = useMovies();
 
-	useEffect(() => {
-		Aos.init();
-	}, []);
-	useEffect(() => {
-		getGenreList();
-	}, []);
-	return (
-		<Routes>
-			<Route path='/' element={<Home />} />
-			<Route path='/genre/:genreName' element={<Genre />} />
-			<Route path='/category/:categoryName' element={<MoviesPerRecent />} />
-			<Route path='/title/:title/:movieId' element={<MoviePage />} />
-		</Routes>
-	);
+  useEffect(() => {
+    Aos.init();
+  }, []);
+  useEffect(() => {
+    (async () => {
+      const list = await getGenreList();
+      updateGenreList(list);
+    })();
+  }, []);
+  return (
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='/genre/:genreName/:page' element={<Genre />} />
+      <Route
+        path='/category/:categoryName/:page'
+        element={<MoviesPerRecent />}
+      />
+      <Route path='/title/:title/:movieId' element={<MoviePage />} />
+    </Routes>
+  );
 };
 
 export default App;
