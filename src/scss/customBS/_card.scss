@@ -23,6 +23,7 @@
 	--#{$prefix}card-group-margin: #{$card-group-margin};
 	// scss-docs-end card-css-vars
 
+	height: 100%;
 	position: relative;
 	display: flex;
 	flex-direction: column;

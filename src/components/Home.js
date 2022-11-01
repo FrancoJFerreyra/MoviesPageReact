@@ -1,26 +1,37 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import MovieList from './MovieList';
 import Header from './Header';
-import HeaderContext from '../contexts/General/GeneralContext';
 import useMovies from '../hooks/useMovies';
+import { Spinner } from 'react-bootstrap';
+//context
+import HeaderContext from '../contexts/General/GeneralContext';
 
 const Home = () => {
-  const { moviesList, updateMovies } = useContext(HeaderContext);
-  const { getPopularMovies } = useMovies();
-  useEffect(() => {
-    (async () => {
-      const list = await getPopularMovies();
-      updateMovies(list);
-    })();
-  }, []);
-  return (
-    <>
-      <Header />
-      <div className='container-xxl'>
-        <MovieList movies={moviesList} />
-      </div>
-    </>
-  );
+	const [isLoading, setIsLoading] = useState(false);
+	const { moviesList, updateMovies } = useContext(HeaderContext);
+	const { getPopularMovies } = useMovies();
+	useEffect(() => {
+		(async () => {
+			setIsLoading(true);
+			const list = await getPopularMovies();
+			updateMovies(list);
+			setIsLoading(false);
+		})();
+	}, []);
+	return (
+		<>
+			<Header />
+			{isLoading ? (
+				<div className='center__spinner'>
+					<Spinner animation='border' />
+				</div>
+			) : (
+				<div className='container-xxl'>
+					{Array.isArray(moviesList) ? <MovieList movies={moviesList} /> : <h1>{moviesList}</h1>}
+				</div>
+			)}
+		</>
+	);
 };
 
 export default Home;

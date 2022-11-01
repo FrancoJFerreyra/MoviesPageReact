@@ -1,12 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Card from './Card';
-import GeneralContext from '../contexts/General/GeneralContext';
 
 const MovieList = ({ movies }) => {
 	const convertToUrl = (str) => {
 		const result = str.split('').filter((e) => {
-			return e !== '?';
+			return e !== '?' && e !== '/';
 		});
 		return result.join('').split(' ').join('_').toLowerCase();
 	};
@@ -28,7 +27,7 @@ const MovieList = ({ movies }) => {
 			</div>
 		);
 	});
-	return <div className='row'>{moviesList}</div>;
+	return <div className='row movieList__container'>{moviesList}</div>;
 };
 
 export default MovieList;
