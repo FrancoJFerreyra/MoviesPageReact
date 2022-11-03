@@ -15,10 +15,7 @@ const MovieList = ({ movies, isFade }) => {
       return '';
     }
     return (
-      <div
-        className='col-xxs-6 col-sm-4 col-md-3 card__movie--container'
-        key={movie.id.toString()}
-      >
+      <div className='col-xxs-6 col-sm-4 col-md-3' key={movie.id.toString()}>
         <Link
           to={`/title/${convertToUrl(movie.title)}/${movie.id}`}
           data-aos={`${isFade ? 'fade' : ''}`}

@@ -182,17 +182,8 @@
 .card-img,
 .card-img-top,
 .card-img-bottom {
+  border-radius: 1rem;
   width: 100%; // Required because we use flexbox and this inherently applies align-self: stretch
-}
-
-.card-img,
-.card-img-top {
-  @include border-top-radius(var(--#{$prefix}card-inner-border-radius));
-}
-
-.card-img,
-.card-img-bottom {
-  @include border-bottom-radius(var(--#{$prefix}card-inner-border-radius));
 }
 
 //

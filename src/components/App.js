@@ -11,6 +11,7 @@ import useMovies from '../hooks/useMovies';
 import GeneralContext from '../contexts/General/GeneralContext';
 import Searched from './Searched';
 import Header from './Header';
+import Footer from './Footer';
 
 const App = () => {
   const { updateGenreList } = useContext(GeneralContext);
@@ -38,6 +39,7 @@ const App = () => {
         />
         <Route path='/title/:title/:movieId' element={<MoviePage />} />
       </Routes>
+      <Footer />
     </>
   );
 };

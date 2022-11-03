@@ -27,7 +27,11 @@ const Searched = () => {
     })();
   }, [searchedText]);
 
-  return <MovieList movies={moviesList} />;
+  return (
+    <div className='container-xxl'>
+      <MovieList movies={moviesList} />
+    </div>
+  );
 };
 
 export default Searched;
