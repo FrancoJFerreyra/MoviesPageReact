@@ -42,7 +42,6 @@ const MoviePage = () => {
   console.log(movieDetails);
   return (
     <>
-      <Header />
       {isLoading ? (
         <div className='center__spinner'>
           <Spinner animation='border' />
@@ -75,7 +74,7 @@ const MoviePage = () => {
                       return (
                         <li key={genre.id}>
                           <Link
-                            className='btn'
+                            className='btn btn-secondary moviePage__genre--btn'
                             to={`/genre/${genre.name.toLowerCase()}/page_1`}
                           >
                             {genre.name}
@@ -95,7 +94,7 @@ const MoviePage = () => {
           </div>
           <Video video={trailer} />
           <Comments />
-          <div className='text-center'>
+          <div className='text-center moviePage__related--title'>
             <h3>Related movies</h3>
           </div>
           <MovieList movies={relatedMovies} isFade={false} />

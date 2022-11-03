@@ -4,7 +4,7 @@ const Card = ({ path, title }) => {
   return (
     <div className='card'>
       <img
-        src={`https://image.tmdb.org/t/p/w500/${path}`}
+        src={`https://image.tmdb.org/t/p/original/${path}`}
         className='card-img-top'
         alt='...'
       />
@@ -12,22 +12,6 @@ const Card = ({ path, title }) => {
         <h5 className='card-title'>{title}</h5>
       </div>
     </div>
-    // {/* <div className='image'>
-    //   <img
-    //     className='cardImage'
-    //     src={`https://image.tmdb.org/t/p/w500/${path}`}
-    //     alt={title}
-    //   />
-    // </div>
-    // <div className='content'>
-    //   <a className='header'>{title}</a>
-    // </div>
-    // <div className='extra content'>
-    //   <a>
-    //     <i className='eye icon'></i>
-    //     {popularity}
-    //   </a>
-    // </div> */}
   );
 };
 

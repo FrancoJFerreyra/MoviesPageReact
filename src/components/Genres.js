@@ -33,23 +33,26 @@ const Genres = () => {
   }, [genreList, page, genreName]);
   return (
     <>
-      <Header />
       {isLoading ? (
         <div className='center__spinner'>
           <Spinner animation='border' />
         </div>
       ) : (
-        <div className='container-xxl'>
-          {Array.isArray(moviesList) ? (
-            <>
-              <h1>{genreName}</h1>
-              <MovieList movies={moviesList} isFade={true} />
-              <Pagination section={`/genre/${genreName}`} page={pageNumber} />
-            </>
-          ) : (
-            <h1>{moviesList}</h1>
-          )}
-        </div>
+        <>
+          <div className='title__container'>
+            <h1>{genreName.charAt(0).toUpperCase() + genreName.slice(1)}</h1>
+          </div>
+          <div className='container-xxl'>
+            {Array.isArray(moviesList) ? (
+              <>
+                <MovieList movies={moviesList} isFade={true} />
+                <Pagination section={`/genre/${genreName}`} page={pageNumber} />
+              </>
+            ) : (
+              <h1>{moviesList}</h1>
+            )}
+          </div>
+        </>
       )}
     </>
   );

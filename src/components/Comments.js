@@ -9,10 +9,12 @@ const Comments = () => {
     setUserComment([
       ...userComment,
       {
-        userName: e.target.userName.value,
+        userName: e.target.username.value,
         comment: e.target.text.value,
       },
     ]);
+    e.target.username.value = '';
+    e.target.text.value = '';
   };
   return (
     <>
@@ -22,9 +24,9 @@ const Comments = () => {
             <label className='form-label'>Username</label>
             <input
               type='text'
-              name='userName'
+              name='username'
               className='form-control'
-              placeholder='Franco2022'
+              placeholder='User2022'
               required
             />
           </div>

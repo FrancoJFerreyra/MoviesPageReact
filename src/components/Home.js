@@ -7,31 +7,39 @@ import { Spinner } from 'react-bootstrap';
 import HeaderContext from '../contexts/General/GeneralContext';
 
 const Home = () => {
-	const [isLoading, setIsLoading] = useState(false);
-	const { moviesList, updateMovies } = useContext(HeaderContext);
-	const { getPopularMovies } = useMovies();
-	useEffect(() => {
-		(async () => {
-			setIsLoading(true);
-			const list = await getPopularMovies();
-			updateMovies(list);
-			setIsLoading(false);
-		})();
-	}, []);
-	return (
-		<>
-			<Header />
-			{isLoading ? (
-				<div className='center__spinner'>
-					<Spinner animation='border' />
-				</div>
-			) : (
-				<div className='container-xxl'>
-					{Array.isArray(moviesList) ? <MovieList movies={moviesList} /> : <h1>{moviesList}</h1>}
-				</div>
-			)}
-		</>
-	);
+  const [isLoading, setIsLoading] = useState(false);
+  const { moviesList, updateMovies } = useContext(HeaderContext);
+  const { getPopularMovies } = useMovies();
+  useEffect(() => {
+    (async () => {
+      setIsLoading(true);
+      const list = await getPopularMovies();
+      updateMovies(list);
+      setIsLoading(false);
+    })();
+  }, []);
+  return (
+    <>
+      {isLoading ? (
+        <div className='center__spinner'>
+          <Spinner animation='border' />
+        </div>
+      ) : (
+        <>
+          <div>
+            <h1 className='title__container'>The Movie App</h1>
+          </div>
+          <div className='container-xxl'>
+            {Array.isArray(moviesList) ? (
+              <MovieList movies={moviesList} />
+            ) : (
+              <h1>{moviesList}</h1>
+            )}
+          </div>
+        </>
+      )}
+    </>
+  );
 };
 
 export default Home;

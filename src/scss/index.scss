@@ -14,9 +14,6 @@
   flex-flow: column;
   align-items: center;
 }
-.card__movie--container {
-  height: 100%;
-}
 .movieList__container {
   row-gap: 1rem;
   padding-top: 2.5rem;
@@ -26,17 +23,19 @@
 .header__dropdown--list {
   display: none;
 }
-.header__genreList--mobile {
-  display: flex;
-  list-style: none;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1rem;
+.header__dropdown--mobile {
+  ul {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+  }
 }
 //MOVIEPAGE
 .moviePage__movie--container {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   align-items: center;
 }
 .moviePage__movie--details {
@@ -60,7 +59,10 @@
   column-gap: 1.5rem;
   padding-bottom: 0.75rem;
 }
-
+.moviePage__genre--btn {
+  font-size: 0.75rem;
+  border: solid 2px gold;
+}
 .moviePage__details--overview {
   display: none;
   p {
@@ -68,15 +70,21 @@
     padding-bottom: 1rem;
   }
 }
+.moviePage__details--overviewMobile {
+  padding-bottom: 1.5rem;
+}
 .moviePage__trailer--container {
   margin-bottom: 2.5rem;
 }
 .moviePage__comment--form {
   justify-content: center;
-  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
 }
 .moviePage__form--textarea {
   margin: 1rem 0;
+}
+.moviePage__comment--list {
+  row-gap: 1rem;
 }
 .moviePage__comment {
   display: flex;
@@ -87,12 +95,29 @@
     height: 2rem;
   }
 }
+.moviePage__related--title {
+  padding-top: 2rem;
+}
+.title__container {
+  padding: 1rem 0;
+  border-top: 1px $gray-400 solid;
+  border-bottom: 1px $gray-400 solid;
+  text-align: center;
+  background-color: $light;
+}
+//PAGINATION
+.pagination__container {
+  justify-content: center;
+  padding-bottom: 2rem;
+}
 @include media-breakpoint-up(sm) {
   .moviePage__image--container {
     img {
       max-width: 16.25rem;
     }
   }
+}
+@include media-breakpoint-up(sm) {
   .moviePage__details--aboutMovie,
   .moviePage__details--genres {
     justify-content: flex-start;
@@ -118,9 +143,11 @@
     display: none;
   }
 }
-
-//HEADER
 @include media-breakpoint-up(lg) {
+  //HEADER
+  .header__dropdown--mobile {
+    display: none;
+  }
   .header__dropdown--list {
     display: flex;
   }
