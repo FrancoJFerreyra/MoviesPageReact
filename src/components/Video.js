@@ -7,7 +7,7 @@ const Video = ({ video }) => {
 				<iframe
 					allowFullScreen
 					title={`${video.name}`}
-					src={`https://www.youtube.com/embed/${video.key}`}
+					src={`https://www.youtube-nocookie.com/embed/${video.key}`}
 				/>
 			) : (
 				<h3>Video not available</h3>
