@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import MovieList from './MovieList';
-import Header from './Header';
 import useMovies from '../hooks/useMovies';
 import { Spinner } from 'react-bootstrap';
 //context

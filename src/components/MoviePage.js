@@ -3,7 +3,6 @@ import { Spinner } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import movieDB from '../api/movieDB';
 import useMovies from '../hooks/useMovies';
-import Header from './Header';
 import Video from './Video';
 import MovieList from './MovieList';
 import Comments from './Comments';

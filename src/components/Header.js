@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button, Form, Nav, Navbar } from 'react-bootstrap';
+import { Form, Nav, Navbar } from 'react-bootstrap';
 import Filter from './Filter';
 import useMovies from '../hooks/useMovies';
 //context
