@@ -17,6 +17,7 @@ const MoviePage = () => {
 	const { getMovieTrailer, getRelatedMovies } = useMovies();
 	const { movieId } = useParams();
 	useEffect(() => {
+		console.log(movieId);
 		setIsLoading(true);
 		const getMovieDetails = async () => {
 			const { data } = await movieDB.get(`/movie/${movieId}`);
